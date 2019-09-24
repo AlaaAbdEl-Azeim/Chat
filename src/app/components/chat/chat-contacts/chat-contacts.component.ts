@@ -15,14 +15,18 @@ export class ChatContactsComponent implements OnInit {
   ngOnInit() {
   }
 
+
   public searchContacts()
     {
+      //search in contacts by name or last message
         let searchText=this.searchText.trim().toLowerCase();
         if ( searchText === '' )
         {
           this.ContactsData = this.contactsDataSource;
         }else{
-          this.ContactsData=this.contactsDataSource.filter(obj => obj.name.toLowerCase().indexOf(searchText) !== -1 );
+          this.ContactsData=this.contactsDataSource.filter(obj => 
+              obj.name.toLowerCase().indexOf(searchText) !== -1 || obj.lastMessage.toLowerCase().indexOf(searchText) !== -1
+             );
         }
     }
 
