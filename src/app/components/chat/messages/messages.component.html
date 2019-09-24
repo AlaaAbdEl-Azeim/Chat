@@ -1,0 +1,69 @@
+
+<div  fxLayout="column">
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <div>
+                    <img [src]="contact.img" class="rounded-circle" alt="contact img"/>
+                </div>
+                <div fxLayout="column" >
+                   <span> {{contact.name}} </span>
+                   <em class="text-muted mat-header-cell"> {{contact.status}} </em>
+                    <mat-icon  [ngClass]="{'bg-success':contact.online}" class="rounded-circle"> </mat-icon>
+                </div>
+
+            </div>
+        </div>
+
+        <div>
+            <button mat-button class="mat-icon-button" [matMenuTriggerFor]="menuActions">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menuActions="matMenu">
+                <button mat-menu-item>Mute</button>
+                <button mat-menu-item>Archive</button>
+                <button mat-menu-item>Delete</button>
+            </mat-menu>
+        </div>
+
+    </div>
+        <div fxFlex class="bg-secondary">
+    
+            <div class="chat-messages">
+    
+                <div fxLayout="row" *ngFor="let message of history" class="message-row"
+                     [ngClass]="{'user' :message.userId === contact.id}">
+                    <ng-template [ngIf]="message.userId == contact.id" [ngIfElse]="contactTemp">
+                        <div class="msg-buubble">
+                            <div class="msg-text">{{message.message}}</div>
+                            <div class="msg-time secondary-text">{{message.time | date:'medium'}}</div>
+                        </div>
+                        <img src="{{user.img}}" alt="user image"  class="rounded-circle"/>
+                    </ng-template>
+                    <ng-template #contactTemp>
+                            <img src="{{contact.img}}" alt="contact image"  class="rounded-circle"/>
+                            <div class="msg-buubble">
+                                    <div class="msg-text">{{message.message}}</div>
+                                    <div class="msg-time secondary-text">{{message.time | date:'medium'}}</div>
+                            </div>
+                    </ng-template>
+                </div>
+    
+            </div>
+    
+        </div>
+
+        <div class="chat-footer" fxLayout="row" fxLayoutAlign="center center">
+                    <textarea fxFlex matInput placeholder="Type your message..." [(ngModel)]="newMessage" floatPlaceholder="never"
+                    (keyup.enter)="addNewMsg($event)"
+                    ></textarea>
+    
+                <button mat-raised-button color="primary" type="submit" (click)="addNewMsg($event)">
+                    <mat-icon>send</mat-icon>
+                </button>
+    
+        </div>
+
+</div>

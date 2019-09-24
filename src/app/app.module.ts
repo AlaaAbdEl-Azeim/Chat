@@ -10,12 +10,14 @@ import { NgMaterialModule } from './ng-material/ng-material.module';
 import { ChatContactsComponent } from './components/chat/chat-contacts/chat-contacts.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MessagesComponent } from './components/chat/messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
-    ChatContactsComponent
+    ChatContactsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

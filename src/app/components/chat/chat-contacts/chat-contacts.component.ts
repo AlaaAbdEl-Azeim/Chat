@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {contacts} from './contacts';
-
+import {ChatService} from '../chat.service';
 @Component({
   selector: 'app-chat-contacts',
   templateUrl: './chat-contacts.component.html',
   styleUrls: ['./chat-contacts.component.scss']
 })
 export class ChatContactsComponent implements OnInit {
-  public contactsDataSource: any = contacts;
+  public contactsDataSource: any = this.chatService.getContacts();
   public searchText='';
-  public ContactsData=contacts;
-  constructor() { }
+  public ContactsData=this.contactsDataSource;
+  constructor(private chatService:ChatService) { }
 
   ngOnInit() {
   }
@@ -28,6 +27,10 @@ export class ChatContactsComponent implements OnInit {
               obj.name.toLowerCase().indexOf(searchText) !== -1 || obj.lastMessage.toLowerCase().indexOf(searchText) !== -1
              );
         }
+    }
+
+    openContactChat(id){
+      let contact = this.chatService.getContactById(id);
     }
 
 }

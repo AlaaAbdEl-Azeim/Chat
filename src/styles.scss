@@ -10,7 +10,7 @@ html, body { height: 100%;
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 //reset outline style as focus and active
-button, input[type=text], textarea {
+button,  button[class*="mat"], input[type=text], textarea {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
