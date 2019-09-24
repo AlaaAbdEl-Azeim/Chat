@@ -1,0 +1,28 @@
+<div class="contacts-wrapper" fxLayout="column" >
+    <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
+
+        <div class="search bg-white border" fxFlex fxLayout="row" fxLayoutAlign="start center">
+
+            <mat-icon class="search-icon">search</mat-icon>
+
+            <!-- <input [(ngModel)]="searchText" type="text" placeholder="Search" fxFlex> -->
+            <input matInput  type="text" placeholder="Search" fxFlex>
+            
+
+        </div>
+    </div>
+    <div *ngFor="let contact of contactsData" fxLayout="row" >
+        <img src="assets/images/contacts/contact.jpg" alt="usr image" class="rounded-circle"/>
+        <div fxLayout="column wrap" fxFlex fxLayoutAlign="space-between">
+           <div>
+                <span>{{contact.name}}</span>
+            </div>
+            <div fxLayoutGap="10px">
+                <span fxFlex>{{contact.lastMessage}}</span>
+                <span fxFlex="60px">{{contact.lastMessageDate}}</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>

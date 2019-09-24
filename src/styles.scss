@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
-html, body { height: 100%; }
+@import 'normalize.css/normalize.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+html, body { height: 100%; 
+    font-size: 14px;
+    box-sizing: border-box;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//reset outline style as focus and active
+button, input[type=text], textarea {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline: 0;
+}
