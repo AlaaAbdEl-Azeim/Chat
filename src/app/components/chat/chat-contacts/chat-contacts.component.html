@@ -6,16 +6,17 @@
             <mat-icon class="search-icon">search</mat-icon>
 
             <!-- <input [(ngModel)]="searchText" type="text" placeholder="Search" fxFlex> -->
-            <input matInput  type="text" placeholder="Search" fxFlex>
+            <input matInput  type="text" placeholder="Search" fxFlex [(ngModel)]="searchText" (input)="searchContacts()">
             
 
         </div>
     </div>
-    <div *ngFor="let contact of contactsData" fxLayout="row" >
+    <div *ngFor="let contact of ContactsData" fxLayout="row" class="mb-2">
         <img src="assets/images/contacts/contact.jpg" alt="usr image" class="rounded-circle"/>
         <div fxLayout="column wrap" fxFlex fxLayoutAlign="space-between">
            <div>
-                <span>{{contact.name}}</span>
+                <span fxFlex>{{contact.name}}</span>
+                <span fxFlex="20px" class="bg-notification rounded-circle text-center text-white" *ngIf="contact.unread">{{contact.unread}}</span>
             </div>
             <div fxLayoutGap="10px">
                 <span fxFlex>{{contact.lastMessage}}</span>

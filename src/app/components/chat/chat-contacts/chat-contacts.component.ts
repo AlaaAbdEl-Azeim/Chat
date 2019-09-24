@@ -7,11 +7,23 @@ import {contacts} from './contacts';
   styleUrls: ['./chat-contacts.component.scss']
 })
 export class ChatContactsComponent implements OnInit {
-  public contactsData: any = contacts;
-
+  public contactsDataSource: any = contacts;
+  public searchText='';
+  public ContactsData=contacts;
   constructor() { }
 
   ngOnInit() {
   }
+
+  public searchContacts()
+    {
+        let searchText=this.searchText.trim().toLowerCase();
+        if ( searchText === '' )
+        {
+          this.ContactsData = this.contactsDataSource;
+        }else{
+          this.ContactsData=this.contactsDataSource.filter(obj => obj.name.toLowerCase().indexOf(searchText) !== -1 );
+        }
+    }
 
 }
