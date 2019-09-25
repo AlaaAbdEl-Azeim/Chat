@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {ChatService} from '../chat.service';
 
 @Component({
   selector: 'app-chat-messages',
@@ -7,42 +8,21 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
   newMessage="";
+  @Input() contact;
+  @Input() history;
+  
   user={
-    'id' : '1',
+    'id' : '4',
     'img': 'assets/images/contacts/contact2.jpg',
     'name' : 'Hassan',
   };
-    contact={
-      'id' : '1',
-      'img': 'assets/images/contacts/contact.jpg',
-      'name' : 'Hassan',
-      'unread' : null,
-      'lastMessageDate': '12:00 am',
-      'lastMessage':'I tried to call you yesterday',
-      'online':true,
-      'status':'No pain .. No gain'
-  };
-    public history =  [
-    {
-        'userId'    : '1',
-        'message': 'Quickly come to the meeting room 1B, we have a big server issue',
-        'time'   : '2017-03-22T08:54:28.299Z'
-    },
-    {
-        'userId'    : '2',
-        'message': 'I’m having breakfast right now, can’t you wait for 10 minutes?',
-        'time'   : '2017-03-22T08:55:28.299Z'
-    },
-    {
-        'userId'    : '1',
-        'message': 'We are losing money! Quick!',
-        'time'   : '2017-03-22T09:00:28.299Z'
-    }
-    
-];
-  constructor() { }
+
+
+  
+  constructor(private chatService:ChatService) { }
 
   ngOnInit() {
+    //this.history = this.chatService.getChatHistory(this.contact.id);
   }
 
   addNewMsg(event) {

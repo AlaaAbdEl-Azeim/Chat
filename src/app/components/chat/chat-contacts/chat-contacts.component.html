@@ -13,7 +13,7 @@
     <ul class="p-0">
         <li *ngFor="let contact of ContactsData" fxLayout="row" class="mb-2">
             <a class="w-100" (click)="openContactChat(contact.id)">
-            <img fxFlex="50px" src="assets/images/contacts/contact.jpg" alt="usr image" class="rounded-circle"/>
+            <img fxFlex="50px" src="{{contact.img}}" alt="usr image" class="rounded-circle"/>
             <div fxLayout="column wrap" fxFlex fxLayoutAlign="space-between" class="overflow-hidden">
             <div>
                     <span fxFlex>{{contact.name}}</span>

@@ -1,7 +1,7 @@
 
-<div  fxLayout="column">
+<div class="h-100"  fxLayout="column" >
 
-    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="space-between center">
 
         <div fxLayout="row" fxLayoutAlign="start center">
             <div fxLayout="row" fxLayoutAlign="start center">
@@ -29,33 +29,26 @@
         </div>
 
     </div>
-        <div fxFlex class="bg-secondary">
-    
-            <div class="chat-messages">
-    
-                <div fxLayout="row" *ngFor="let message of history" class="message-row"
-                     [ngClass]="{'user' :message.userId === contact.id}">
-                    <ng-template [ngIf]="message.userId == contact.id" [ngIfElse]="contactTemp">
-                        <div class="msg-buubble">
-                            <div class="msg-text">{{message.message}}</div>
-                            <div class="msg-time secondary-text">{{message.time | date:'medium'}}</div>
+        <div fxFlex="1 1 auto" class="bg-secondary px-3 py-4">
+                <!-- row-reverse -->
+            <div class="chat-messages position-relative">
+                <div  *ngFor="let message of history" class="message-row mb-2" 
+                fxLayout="row"
+                [ngClass]="message.userId == contact.id?'contactMsg' :'userMsg'">
+                        <div class="msg-buubble p-2 text-white bg-primary rounded-bottom position-relative" [ngClass]="message.userId == contact.id?'rounded-right':'rounded-left'">
+                            <bdi class="msg-text">{{message.message}}</bdi>
+                            <bdi class="msg-time secondary-text">{{message.time | date:'shortTime'}}</bdi>
+                            <span class="msg-quote"></span>
                         </div>
-                        <img src="{{user.img}}" alt="user image"  class="rounded-circle"/>
-                    </ng-template>
-                    <ng-template #contactTemp>
-                            <img src="{{contact.img}}" alt="contact image"  class="rounded-circle"/>
-                            <div class="msg-buubble">
-                                    <div class="msg-text">{{message.message}}</div>
-                                    <div class="msg-time secondary-text">{{message.time | date:'medium'}}</div>
-                            </div>
-                    </ng-template>
+                        <img *ngIf="message.userId == contact.id" src="{{user.img}}" alt="user image"  class="rounded-circle"/>
+                        <img *ngIf="message.userId == user.id" src="{{contact.img}}" alt="contact image"  class="rounded-circle"/>
                 </div>
     
             </div>
     
         </div>
 
-        <div class="chat-footer" fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="0 0 auto" class="chat-footer" fxLayout="row" fxLayoutAlign="center center">
                     <textarea fxFlex matInput placeholder="Type your message..." [(ngModel)]="newMessage" floatPlaceholder="never"
                     (keyup.enter)="addNewMsg($event)"
                     ></textarea>

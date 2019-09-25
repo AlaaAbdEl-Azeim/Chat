@@ -1,11 +1,11 @@
 <div class="chat-container">
   <mat-sidenav-container fxFlex>
     <mat-sidenav mode="side" opened fxFlex="33%" class="min-width-33">
-      <app-chat-contacts >
+      <app-chat-contacts (selectContact)="openContactChat($event)">
       </app-chat-contacts>
     </mat-sidenav>
     <mat-sidenav-content fxFlex>
-      <app-chat-messages></app-chat-messages>
+      <app-chat-messages *ngIf="selectedContact" [contact]="selectedContact" [history]="selectedHistory"></app-chat-messages>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

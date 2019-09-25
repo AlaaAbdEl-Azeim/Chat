@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {ChatService} from '../chat.service';
 @Component({
   selector: 'app-chat-contacts',
@@ -11,6 +11,8 @@ export class ChatContactsComponent implements OnInit {
   public ContactsData=this.contactsDataSource;
   constructor(private chatService:ChatService) { }
 
+  @Output()  selectContact = new EventEmitter<string>();
+  
   ngOnInit() {
   }
 
@@ -30,7 +32,7 @@ export class ChatContactsComponent implements OnInit {
     }
 
     openContactChat(id){
-      let contact = this.chatService.getContactById(id);
+      this.selectContact.emit(id);
     }
 
 }

@@ -1,0 +1,36 @@
+.message-row{
+    // padding-left:50px;
+    img{
+        position: absolute;
+    }
+    &.contactMsg{
+        img{
+            left:0;
+        }
+    }
+    &.userMsg{
+        direction: rtl;
+        img{
+            right:0;
+        }
+    }
+    &.contactMsg + .contactMsg , &.userMsg + .userMsg {
+        img , .msg-quote{
+            display: none;
+        }
+    }
+    .msg-buubble{
+        margin-inline-start: 70px;
+        .msg-quote{
+            position: absolute;
+            left: -18px;
+            top: 0;
+            border: 9px solid transparent;
+            border-right-color: #007bff;
+            border-top-color: #007bff;
+            border-top-left-radius: 5px;
+            background: transparent;
+        }
+    }
+
+}

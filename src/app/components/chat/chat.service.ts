@@ -25,6 +25,6 @@ export class ChatService {
     const chatContact = chat_history.find((contact) => {
       return contact.contactId === contactId;
     });
-    return chatContact.history;
+    if(chatContact) return chatContact.history;
   }
 }
