@@ -40,8 +40,8 @@
                             <bdi class="msg-time secondary-text">{{message.time | date:'shortTime'}}</bdi>
                             <span class="msg-quote"></span>
                         </div>
-                        <img *ngIf="message.userId == contact.id" src="{{user.img}}" alt="user image"  class="rounded-circle"/>
-                        <img *ngIf="message.userId == user.id" src="{{contact.img}}" alt="contact image"  class="rounded-circle"/>
+                        <img *ngIf="message.userId == contact.id" src="{{contact.img}}" alt="user image"  class="rounded-circle"/>
+                        <img *ngIf="message.userId == user.id" src="{{user.img}}" alt="contact image"  class="rounded-circle"/>
                 </div>
     
             </div>

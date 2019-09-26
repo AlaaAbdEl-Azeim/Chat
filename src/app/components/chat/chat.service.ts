@@ -27,4 +27,8 @@ export class ChatService {
     });
     if(chatContact) return chatContact.history;
   }
+
+  createNewChat(contactId){
+    return chat_history.push({"contactId":contactId,"history":[]});
+  }
 }

@@ -13,7 +13,7 @@ export class MessagesComponent implements OnInit {
   
   user={
     'id' : '4',
-    'img': 'assets/images/contacts/contact2.jpg',
+    'img': 'assets/images/contacts/contact4.jpg',
     'name' : 'Hassan',
   };
 
