@@ -62,12 +62,17 @@
                                 <mat-icon>attachment</mat-icon>
                           </span>
                         </div>
-                        <textarea fxFlex  
-                        placeholder="Type your message..." 
-                        [(ngModel)]="newMessage" 
-                        (keyup.enter)="addNewMsg($event)"
-                        class="border"
-                    ></textarea>
+                        <div fxFlex fxLayoutAlign="start center" class="bg-white border">
+                            <textarea   fxFlex
+                            placeholder="Type your message..." 
+                            [(ngModel)]="newMessage" 
+                            (keyup.enter)="addNewMsg($event)"
+                            class="border-0"
+                            rows="1"
+                            wrap="hard"
+                            ></textarea>
+                        </div>
+                   
                         <div class="input-group-append" (click)="addNewMsg($event)">
                           <span class="input-group-text bg-primary text-white border p-0">
                                 <button mat-button >
