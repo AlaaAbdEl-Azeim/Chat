@@ -26,7 +26,7 @@ export class MessagesComponent implements OnInit {
   constructor(private chatService:ChatService) { }
   ngOnInit(){
     this.eventsSubscription = this.events.subscribe(() => {
-      this.scrollContentToBottom();
+      this.openNewChat();
     });
   }
 
@@ -41,14 +41,15 @@ export class MessagesComponent implements OnInit {
                         "message":this.newMessage,
                         "time":(new Date()).toString()});
                         this.newMessage="";
-      this.scrollContentToBottom();
+      this.openNewChat();
     }
     return false;
   }
-  scrollContentToBottom(){
+  openNewChat(){
     setTimeout(() =>{
       this.msgContent.nativeElement.scrollTop = this.msgContent.nativeElement.scrollHeight
-     });
+      this.newMessage="";
+    });
   }
 
 }
