@@ -1,7 +1,7 @@
 
 <div class="h-100 messages_wrapper"  fxLayout="column" >
 
-    <div class="contact_info" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="contact_info pl-sm-3 pl-lg-0" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="space-between center">
 
         <div fxLayout="row" fxLayoutAlign="start center">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
@@ -11,7 +11,7 @@
                 <div fxLayout="column" >
                    <span> {{contact.name}} </span>
                    <em class="text-muted mat-header-cell"> {{contact.status}} </em>
-                   <span>
+                   <span [ngClass]="contact.online?'text-success':'text-grey'">
                        <mat-icon class="status_icon rounded-circle" [ngClass]="contact.online?'bg-success':'bg-grey'" > </mat-icon>
                        {{contact.online?'Online':'Offline'}}
                     </span> 
@@ -39,7 +39,7 @@
                 <div  *ngFor="let message of history" class="message-row mb-2" 
                 fxLayout="row"
                 [ngClass]="message.userId == contact.id?'contactMsg' :'userMsg'">
-                        <div fxLayoutGap="40px" class="msg-bubble p-3 rounded-bottom position-relative" [ngClass]="message.userId == contact.id?'rounded-right':'rounded-left'">
+                        <div fxLayoutGap="40px" class="msg-bubble p-3 rounded-bottom position-relative" [ngClass]="message.userId == contact.id?'rounded-right text-light-blue':'rounded-left'">
                             <bdi class="msg-text">{{message.message}}</bdi>
                             <bdi class="msg-time secondary-text">{{message.time | date:'shortTime'}}</bdi>
                             <span class="msg-quote"></span>
@@ -67,7 +67,7 @@
                             placeholder="Type your message..." 
                             [(ngModel)]="newMessage" 
                             (keyup.enter)="addNewMsg($event)"
-                            class="border-0"
+                            class="border-0 pl-3"
                             rows="1"
                             wrap="hard"
                             ></textarea>

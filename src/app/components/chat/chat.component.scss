@@ -1,7 +1,17 @@
 .chat-container{
     height: 100%;
     display: flex;
+    .mobile_menu{
+        height: 40px;
+        margin: 20px 0;
+    }
 }
 .min-width-33{
     min-width: 33%;
+}
+:host ::ng-deep{
+.status_icon{
+    width: 10px;
+    height: 10px;
+}
 }

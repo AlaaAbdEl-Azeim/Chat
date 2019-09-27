@@ -6,6 +6,26 @@
     background: $grey;
 }
 
+.text-grey{
+    color: $grey;
+}
+
 .bg-dark-blue{
     background: $dark-blue;
+}
+
+.text-light-blue{
+    color : $light-blue;
+}
+
+.text-success{
+    color: $green!important
+}
+
+.bg-success{
+    background: $green!important
+}
+
+.pointer{
+    cursor: pointer;
 }

@@ -16,8 +16,7 @@
         }
     }
     .contact_status{
-        &:after{
-            content: "";
+        .status_icon{
             width: 10px;
             height: 10px;
             background: var(--gray);
@@ -28,6 +27,9 @@
         }
         &.online:after{
             background: var(--green);
+        }
+        .lastMessageTxt{
+            font-size: 0.8em;
         }
     }
 }

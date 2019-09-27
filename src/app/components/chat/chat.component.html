@@ -12,8 +12,8 @@
 
     <mat-sidenav-content fxFlex>
 
-      <button  type="button" mat-button (click)="drawer.toggle()" *ngIf="mobileQuery.matches" class="position-absolute mat-icon-button">
-        <mat-icon class="text-primary">chat </mat-icon>
+      <button  type="button" mat-button (click)="drawer.toggle()" *ngIf="mobileQuery.matches" class="position-absolute mat-icon-button mobile_menu">
+        <mat-icon class="text-primary">menu </mat-icon>
       </button>
       <app-chat-messages *ngIf="selectedContact" 
                           [contact]="selectedContact" 

@@ -14,7 +14,7 @@ export class ChatComponent implements OnInit {
   selectedHistory;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-  private scrollChatContent: Subject<void> = new Subject<void>();
+  scrollChatContent: Subject<void> = new Subject<void>();
 
   constructor(private chatService:ChatService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) { 
     this.mobileQuery = media.matchMedia('(max-width: 960px)');

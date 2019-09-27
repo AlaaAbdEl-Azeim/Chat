@@ -11,10 +11,11 @@
         </div>
     </div>
     <ul class="p-0 bg-grey m-0" fxFlex fxLayout="column">
-        <li *ngFor="let contact of ContactsData" fxLayout="row"  [ngClass]="{'bg-dark-blue text-white':contactId == contact.id}" [fxFlexOrder]='contact.unread * -1'>
-            <a class="w-100 p-3 border-bottom" (click)="openContactChat(contact.id)">
+        <li *ngFor="let contact of ContactsData" fxLayout="row"  [ngClass]="{'bg-dark-blue text-white':contactId == contact.id}" [fxFlexOrder]='contact.unread * -1' class="pointer">
+            <a  class="w-100 p-3 border-bottom" (click)="openContactChat(contact.id)" >
             <div fxFlex="50px" class="contact_status position-relative" [ngClass]="{'online':contact.online}">
                 <img  src="{{contact.img}}" alt="usr image" class="border border-secondary rounded-circle"/>
+                <mat-icon class="status_icon rounded-circle" [ngClass]="contact.online?'bg-success':'bg-grey'" > </mat-icon>
             </div>
             
             <div fxLayout="column wrap" fxFlex fxLayoutAlign="space-between" class="overflow-hidden ml-3">
@@ -24,7 +25,7 @@
                 </div>
                 <div fxFlex fxLayoutGap="10px" class="w-100 font-weight-light">
                     <span fxFlex class="text-truncate">{{contact.lastMessage}}</span>
-                    <span fxFlex="60px text-black-50">{{contact.lastMessageDate}}</span>
+                    <span fxFlex="60px text-black-50 lastMessageTxt">{{contact.lastMessageDate}}</span>
                 </div>
             </div>
         </a>

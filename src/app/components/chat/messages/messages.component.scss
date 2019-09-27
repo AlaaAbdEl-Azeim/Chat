@@ -2,10 +2,7 @@
     .contact_info{
         height: 40px;
         margin:20px 35px;
-        .status_icon{
-            width: 10px;
-            height: 10px;
-        }
+        
     }
     .message-row{
         // padding-left:50px;
@@ -20,6 +17,7 @@
         }
         .msg-bubble{
             margin-inline-start: 70px;
+            word-break: break-word;
             .msg-quote{
                 position: absolute;
                 top: 0;
@@ -35,7 +33,7 @@
                 left:0;
             }
             .msg-bubble{
-                color:var(--white);
+                // color:$light-blue;
                 background-color: var(--blue);
                 .msg-quote{
                     left: -18px;
