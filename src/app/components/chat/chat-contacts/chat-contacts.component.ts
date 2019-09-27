@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {ChatService} from '../chat.service';
 @Component({
   selector: 'app-chat-contacts',
@@ -10,10 +10,19 @@ export class ChatContactsComponent implements OnInit {
   public searchText='';
   public ContactsData=this.contactsDataSource;
   constructor(private chatService:ChatService) { }
-
-  @Output()  selectContact = new EventEmitter<string>();
   
+  @Input() contactId;
+  @Output()  selectContact = new EventEmitter<string>();
+  private number=3;
   ngOnInit() {
+    //sort contacts by unreaded number of messages
+    this.ContactsData.sort((firstObj, secondObj) =>  secondObj.unread - firstObj.unread);
+    this.chatService.increaseUnreadMsg(this.ContactsData);
+
+    
+    // this.ContactsData.subscribe(function (value) {
+    //   console.log('value:', value);
+    // });
   }
 
 

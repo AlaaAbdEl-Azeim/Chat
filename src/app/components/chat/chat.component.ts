@@ -25,6 +25,8 @@ export class ChatComponent implements OnInit {
       let history=this.chatService.getChatHistory(id);
       this.selectedContact = this.chatService.getContactById(id);
       this.selectedHistory =  history? history : this.chatService.createNewChat(id);
+      //remove unread count when user select contact chat
+      this.selectedContact.unread=null;
   }
   
 }

@@ -1,17 +1,21 @@
 
-<div class="h-100"  fxLayout="column" >
+<div class="h-100 messages_wrapper"  fxLayout="column" >
 
-    <div fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="contact_info" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="space-between center">
 
         <div fxLayout="row" fxLayoutAlign="start center">
-            <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
                 <div>
                     <img [src]="contact.img" class="rounded-circle" alt="contact img"/>
                 </div>
                 <div fxLayout="column" >
                    <span> {{contact.name}} </span>
                    <em class="text-muted mat-header-cell"> {{contact.status}} </em>
-                    <mat-icon  [ngClass]="{'bg-success':contact.online}" class="rounded-circle"> </mat-icon>
+                   <span>
+                       <mat-icon class="status_icon rounded-circle" [ngClass]="contact.online?'bg-success':'bg-grey'" > </mat-icon>
+                       {{contact.online?'Online':'Offline'}}
+                    </span> 
+
                 </div>
 
             </div>
@@ -19,7 +23,7 @@
 
         <div>
             <button mat-button class="mat-icon-button" [matMenuTriggerFor]="menuActions">
-                <mat-icon>more_vert</mat-icon>
+                <mat-icon class="text-primary">more_vert</mat-icon>
             </button>
             <mat-menu #menuActions="matMenu">
                 <button mat-menu-item>Mute</button>
@@ -29,13 +33,13 @@
         </div>
 
     </div>
-        <div fxFlex="1 1 auto" class="bg-secondary px-3 py-4">
+        <div fxFlex="1 1 auto" class="bg-grey message_content">
                 <!-- row-reverse -->
             <div class="chat-messages position-relative">
                 <div  *ngFor="let message of history" class="message-row mb-2" 
                 fxLayout="row"
                 [ngClass]="message.userId == contact.id?'contactMsg' :'userMsg'">
-                        <div class="msg-buubble p-2 text-white bg-primary rounded-bottom position-relative" [ngClass]="message.userId == contact.id?'rounded-right':'rounded-left'">
+                        <div fxLayoutGap="40px" class="msg-bubble p-3 rounded-bottom position-relative" [ngClass]="message.userId == contact.id?'rounded-right':'rounded-left'">
                             <bdi class="msg-text">{{message.message}}</bdi>
                             <bdi class="msg-time secondary-text">{{message.time | date:'shortTime'}}</bdi>
                             <span class="msg-quote"></span>
@@ -48,15 +52,23 @@
     
         </div>
 
-        <div fxFlex="0 0 auto" class="chat-footer" fxLayout="row" fxLayoutAlign="center center">
-                    <textarea fxFlex matInput placeholder="Type your message..." [(ngModel)]="newMessage" floatPlaceholder="never"
-                    (keyup.enter)="addNewMsg($event)"
+        <div fxFlex="0 0 auto" class="chat-footer bg-grey" fxLayout="row" fxLayoutAlign="center center">
+              
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-white text-muted">
+                                <mat-icon>attachment</mat-icon>
+                          </span>
+                        </div>
+                        <textarea fxFlex  placeholder="Type your message..." [(ngModel)]="newMessage" 
+                        (keyup.enter)="addNewMsg($event)"
                     ></textarea>
-    
-                <button mat-raised-button color="primary" type="submit" (click)="addNewMsg($event)">
-                    <mat-icon>send</mat-icon>
-                </button>
-    
+                        <div class="input-group-append">
+                          <span class="input-group-text bg-primary text-white">
+                                <mat-icon>send</mat-icon>
+                          </span>
+                        </div>
+                      </div>
         </div>
 
 </div>

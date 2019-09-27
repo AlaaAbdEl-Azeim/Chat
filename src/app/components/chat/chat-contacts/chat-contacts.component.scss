@@ -1,9 +1,8 @@
 .contacts-wrapper{
-    padding: 10px;
     .search-wrapper {
-        margin: 10px 0px 20px;
+        padding: 20px 0px 20px;
         .search{
-            height: 30px;
+            height: 40px;
             padding: 8px;
             border-radius: 18px;
             border: 1px solid;
@@ -14,6 +13,21 @@
             input{
                 border: none;
             }
+        }
+    }
+    .contact_status{
+        &:after{
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: var(--gray);
+            position: absolute;
+            bottom: 5px;
+            right: 0px;
+            border-radius: 50%;
+        }
+        &.online:after{
+            background: var(--green);
         }
     }
 }

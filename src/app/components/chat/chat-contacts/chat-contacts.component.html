@@ -1,7 +1,7 @@
-<div class="contacts-wrapper" fxLayout="column" >
-    <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
+<div class="contacts-wrapper h-100 bg-grey" fxLayout="column" >
+    <div class="search-wrapper border-bottom"  fxLayout="row" fxLayoutAlign="start center">
 
-        <div class="search bg-white border" fxFlex fxLayout="row" fxLayoutAlign="start center">
+        <div class="search bg-white border mx-3" fxFlex fxLayout="row" fxLayoutAlign="start center">
 
             <mat-icon class="search-icon">search</mat-icon>
 
@@ -10,18 +10,21 @@
 
         </div>
     </div>
-    <ul class="p-0">
-        <li *ngFor="let contact of ContactsData" fxLayout="row" class="mb-2 p-3">
-            <a class="w-100" (click)="openContactChat(contact.id)">
-            <img fxFlex="50px" src="{{contact.img}}" alt="usr image" class="rounded-circle"/>
+    <ul class="p-0 bg-grey m-0" fxFlex fxLayout="column">
+        <li *ngFor="let contact of ContactsData" fxLayout="row"  [ngClass]="{'bg-dark-blue text-white':contactId == contact.id}" [fxFlexOrder]='contact.unread * -1'>
+            <a class="w-100 p-3 border-bottom" (click)="openContactChat(contact.id)">
+            <div fxFlex="50px" class="contact_status position-relative" [ngClass]="{'online':contact.online}">
+                <img  src="{{contact.img}}" alt="usr image" class="border border-secondary rounded-circle"/>
+            </div>
+            
             <div fxLayout="column wrap" fxFlex fxLayoutAlign="space-between" class="overflow-hidden ml-3">
             <div>
-                    <span fxFlex>{{contact.name}}</span>
-                    <span fxFlex="20px" class="bg-notification rounded-circle text-center text-white" *ngIf="contact.unread">{{contact.unread}}</span>
+                    <span fxFlex [ngClass]="{'font-weight-bold':contact.unread && contactId != contact.id }">{{contact.name}}</span>
+                    <span fxFlex="20px" class="bg-notification rounded-circle text-center text-white" *ngIf="contact.unread && contactId != contact.id">{{contact.unread}}</span>
                 </div>
-                <div fxFlex fxLayoutGap="10px" class="w-100">
+                <div fxFlex fxLayoutGap="10px" class="w-100 font-weight-light">
                     <span fxFlex class="text-truncate">{{contact.lastMessage}}</span>
-                    <span fxFlex="60px">{{contact.lastMessageDate}}</span>
+                    <span fxFlex="60px text-black-50">{{contact.lastMessageDate}}</span>
                 </div>
             </div>
         </a>

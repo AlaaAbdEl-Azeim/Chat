@@ -1,7 +1,7 @@
 <div class="chat-container">
   <mat-sidenav-container fxFlex>
-    <mat-sidenav mode="side" opened fxFlex="33%" class="min-width-33">
-      <app-chat-contacts (selectContact)="openContactChat($event)">
+    <mat-sidenav mode="side" opened fxFlex="33%" class="min-width-33 shadow">
+      <app-chat-contacts [contactId]="selectedContact.id" (selectContact)="openContactChat($event)">
       </app-chat-contacts>
     </mat-sidenav>
     <mat-sidenav-content fxFlex>

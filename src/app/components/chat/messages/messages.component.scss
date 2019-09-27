@@ -1,36 +1,76 @@
-.message-row{
-    // padding-left:50px;
-    img{
-        position: absolute;
+.messages_wrapper{
+    .contact_info{
+        height: 40px;
+        margin:20px 35px;
+        .status_icon{
+            width: 10px;
+            height: 10px;
+        }
     }
-    &.contactMsg{
+    .message-row{
+        // padding-left:50px;
         img{
-            left:0;
-        }
-    }
-    &.userMsg{
-        direction: rtl;
-        img{
-            right:0;
-        }
-    }
-    &.contactMsg + .contactMsg , &.userMsg + .userMsg {
-        img , .msg-quote{
-            display: none;
-        }
-    }
-    .msg-buubble{
-        margin-inline-start: 70px;
-        .msg-quote{
             position: absolute;
-            left: -18px;
-            top: 0;
-            border: 9px solid transparent;
-            border-right-color: #007bff;
-            border-top-color: #007bff;
-            border-top-left-radius: 5px;
-            background: transparent;
+        }
+       
+        &.contactMsg + .contactMsg , &.userMsg + .userMsg {
+            img , .msg-quote{
+                display: none;
+            }
+        }
+        .msg-bubble{
+            margin-inline-start: 70px;
+            .msg-quote{
+                position: absolute;
+                top: 0;
+                border: 9px solid transparent;
+                background: transparent;
+            }
+            .msg-time{
+                color:var(--gray);
+            }
+        }
+        &.contactMsg{
+            img{
+                left:0;
+            }
+            .msg-bubble{
+                color:var(--white);
+                background-color: var(--blue);
+                .msg-quote{
+                    left: -18px;
+                    border-top-color: var(--blue);
+                    border-right-color: var(--blue);
+                    border-top-left-radius: 5px;
+                }
+            }
+        }
+        &.userMsg{
+            direction: rtl;
+            img{
+                right:0;
+            }
+            .msg-bubble{
+                color:var(--black);
+                background-color: var(--white);
+                .msg-quote{
+                    right: -18px;
+                    border-top-color: var(--white);
+                    border-left-color: var(--white);
+                    border-top-right-radius: 5px;
+                }
+            }
         }
     }
-
+    .message_content , .chat-footer{
+        padding: 35px;
+    }
+    .chat-footer{
+         textarea{
+            resize: none;
+         }
+         textarea,.input-group-text{
+             border-color: lightslategrey;
+         }
+    }
 }

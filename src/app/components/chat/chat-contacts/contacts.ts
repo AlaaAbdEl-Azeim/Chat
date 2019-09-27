@@ -1,12 +1,13 @@
 export const contacts = [
     {
-        'id'             : '1',
-        'name'           : 'Hassan',
-        'unread'         : null,
+        'id' : '1',
+        'name' : 'Hassan',
+        'unread' : null,
         'lastMessageDate': '12:00 am',
         'lastMessage':'I tried to call you yesterday',
         'online':true,
-        img:"assets/images/contacts/contact.jpg"
+        img:"assets/images/contacts/contact.jpg",
+        "status" : 'No pain .. No gain'
     },
     {
         'id'             : '2',
@@ -15,7 +16,8 @@ export const contacts = [
         'lastMessageDate': 'yesterday',
         'lastMessage':'I tried to call you yesterday2',
         'online':false,
-        img:"assets/images/contacts/contact2.jpg"
+        img:"assets/images/contacts/contact2.jpg",
+        "status" : 'Good mood'
 
 
     },
@@ -26,7 +28,9 @@ export const contacts = [
         'lastMessageDate': '8 sep',
         'lastMessage':'I tried to call you yesterdayI tried to call you yesterdayI tried to call you yesterdayI tried to call you yesterdayI tried to call you yesterdayI tried to call you yesterday',
         'online':true,
-        img:"assets/images/contacts/contact3.jpg"
+        img:"assets/images/contacts/contact3.jpg",
+        "status" : 'Away'
+
 
 
     }
