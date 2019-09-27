@@ -63,7 +63,7 @@
                         <textarea fxFlex  placeholder="Type your message..." [(ngModel)]="newMessage" 
                         (keyup.enter)="addNewMsg($event)"
                     ></textarea>
-                        <div class="input-group-append">
+                        <div class="input-group-append" (click)="addNewMsg($event)">
                           <span class="input-group-text bg-primary text-white">
                                 <mat-icon>send</mat-icon>
                           </span>
