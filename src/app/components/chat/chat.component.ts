@@ -1,6 +1,7 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {ChatService} from './chat.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -13,13 +14,14 @@ export class ChatComponent implements OnInit {
   selectedHistory;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
+  private scrollChatContent: Subject<void> = new Subject<void>();
 
   constructor(private chatService:ChatService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) { 
     this.mobileQuery = media.matchMedia('(max-width: 960px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
-  
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
@@ -32,11 +34,15 @@ export class ChatComponent implements OnInit {
   
 
   openContactChat(id){
-      let history=this.chatService.getChatHistory(id);
-      this.selectedContact = this.chatService.getContactById(id);
-      this.selectedHistory =  history? history : this.chatService.createNewChat(id);
-      //remove unread count when user select contact chat
-      this.selectedContact.unread=null;
+    let history=this.chatService.getChatHistory(id);
+    this.selectedContact = this.chatService.getContactById(id);
+    this.selectedHistory =  history? history : this.chatService.createNewChat(id);
+    //remove unread count when user select contact chat
+    this.selectedContact.unread=null;
+    //scroll the chat content to bottom
+    this.scrollChatContent.next()
   }
+
+
   
 }

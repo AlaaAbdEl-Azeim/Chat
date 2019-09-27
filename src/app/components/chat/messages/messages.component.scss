@@ -15,7 +15,7 @@
        
         &.contactMsg + .contactMsg , &.userMsg + .userMsg {
             img , .msg-quote{
-                display: none;
+                visibility: hidden;
             }
         }
         .msg-bubble{

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {contacts,chat_history} from './chat-contacts/contacts';
+import { Subject, BehaviorSubject } from 'rxjs';
 // import { setInterval } from 'timers';
 
 @Injectable({
@@ -8,6 +9,9 @@ import {contacts,chat_history} from './chat-contacts/contacts';
 export class ChatService {
   contactsData= contacts;
   history= chat_history;
+  scrollChatContent= new Subject();
+
+
   constructor() { }
 
 
@@ -26,6 +30,8 @@ export class ChatService {
     const chatContact = chat_history.find((contact) => {
       return contact.contactId === contactId;
     });
+    this.scrollChatContent.next();
+
     if(chatContact) return chatContact.history;
   }
 

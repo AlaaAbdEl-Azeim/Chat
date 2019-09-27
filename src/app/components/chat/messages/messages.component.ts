@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import {ChatService} from '../chat.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chat-messages',
@@ -10,7 +11,10 @@ export class MessagesComponent implements OnInit {
   newMessage="";
   @Input() contact;
   @Input() history;
-  
+  @Input() events: Observable<void>;
+  @ViewChild('message_content',null) msgContent: ElementRef;
+  private eventsSubscription: any
+
   user={
     'id' : '4',
     'img': 'assets/images/contacts/contact4.jpg',
@@ -18,19 +22,33 @@ export class MessagesComponent implements OnInit {
   };
 
 
-  
-  constructor(private chatService:ChatService) { }
 
-  ngOnInit() {
-    //this.history = this.chatService.getChatHistory(this.contact.id);
+  constructor(private chatService:ChatService) { }
+  ngOnInit(){
+    this.eventsSubscription = this.events.subscribe(() => {
+      this.scrollContentToBottom();
+    });
   }
 
+  ngOnDestroy (){
+    this.eventsSubscription.unsubscribe();
+  }
+  
   addNewMsg(event) {
-    this.history.push({"userId":this.user.id,
-                       "message":this.newMessage,
-                      "time":(new Date()).toString()});
-                      this.newMessage="";
+    this.newMessage = this.newMessage.trim();//prevent add empty message
+    if(this.newMessage){
+      this.history.push({"userId":this.user.id,
+                        "message":this.newMessage,
+                        "time":(new Date()).toString()});
+                        this.newMessage="";
+      this.scrollContentToBottom();
+    }
     return false;
+  }
+  scrollContentToBottom(){
+    setTimeout(() =>{
+      this.msgContent.nativeElement.scrollTop = this.msgContent.nativeElement.scrollHeight
+     });
   }
 
 }

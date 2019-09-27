@@ -4,7 +4,8 @@
     [opened]="!mobileQuery.matches"
     [mode]="mobileQuery.matches ? 'over' : 'side'" 
     [ngClass]="mobileQuery.matches ? 'w-50' : 'w-25'"
-    [fixedInViewport]="mobileQuery.matches">
+    [fixedInViewport]="mobileQuery.matches"
+    class="shadow">
       <app-chat-contacts [contactId]="selectedContact.id" (selectContact)="openContactChat($event)">
       </app-chat-contacts>
     </mat-sidenav>
@@ -14,7 +15,11 @@
       <button  type="button" mat-button (click)="drawer.toggle()" *ngIf="mobileQuery.matches" class="position-absolute mat-icon-button">
         <mat-icon class="text-primary">chat </mat-icon>
       </button>
-      <app-chat-messages *ngIf="selectedContact" [contact]="selectedContact" [history]="selectedHistory"></app-chat-messages>
+      <app-chat-messages *ngIf="selectedContact" 
+                          [contact]="selectedContact" 
+                          [history]="selectedHistory"
+                          [events]="scrollChatContent.asObservable()">
+      </app-chat-messages>
     </mat-sidenav-content>
 
   </mat-sidenav-container>

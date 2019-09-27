@@ -33,7 +33,7 @@
         </div>
 
     </div>
-        <div fxFlex="1 1 auto" class="bg-grey message_content">
+        <div fxFlex="1 1 auto" #message_content class="bg-grey message_content overflow-auto">
                 <!-- row-reverse -->
             <div class="chat-messages position-relative">
                 <div  *ngFor="let message of history" class="message-row mb-2" 
@@ -52,20 +52,27 @@
     
         </div>
 
-        <div fxFlex="0 0 auto" class="chat-footer bg-grey" fxLayout="row" fxLayoutAlign="center center">
-              
-                <div class="input-group mb-3">
+        <div fxFlex="0 0 auto" class="chat-footer bg-grey pb-2" fxLayout="column" >
+              <div>
+                  <label class="text-black-50 mx-1">{{contact.name}} is typing ...</label>
+              </div>
+                <div class="input-group mb-3 shadow">
                         <div class="input-group-prepend">
-                          <span class="input-group-text bg-white text-muted">
+                          <span class="border input-group-text bg-white text-muted">
                                 <mat-icon>attachment</mat-icon>
                           </span>
                         </div>
-                        <textarea fxFlex  placeholder="Type your message..." [(ngModel)]="newMessage" 
+                        <textarea fxFlex  
+                        placeholder="Type your message..." 
+                        [(ngModel)]="newMessage" 
                         (keyup.enter)="addNewMsg($event)"
+                        class="border"
                     ></textarea>
                         <div class="input-group-append" (click)="addNewMsg($event)">
-                          <span class="input-group-text bg-primary text-white">
-                                <mat-icon>send</mat-icon>
+                          <span class="input-group-text bg-primary text-white border p-0">
+                                <button mat-button >
+                                    <mat-icon>send</mat-icon>
+                                </button>   
                           </span>
                         </div>
                       </div>
