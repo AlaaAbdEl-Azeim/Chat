@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {contacts,chat_history} from './chat-contacts/contacts';
-import { Subject, BehaviorSubject } from 'rxjs';
+import {contacts,chat_history} from './contacts';
+import { Subject } from 'rxjs';
 // import { setInterval } from 'timers';
 
 @Injectable({
@@ -41,13 +41,7 @@ export class ChatService {
     return  history;
   }
 
-  increaseUnreadMsg(contcts){
-    if(contcts){
-      setInterval (function () {
-      //get random number between 0 and the length-1 of conacts 
-      let randomNumer=Math.floor(Math.random() * contcts.length);
-      contacts[randomNumer].unread ++;
-      }, 5000);
-    }
+  increaseUnreadMsg(contctId){
+    this.contactsData[contctId].unread++;
   }
 }

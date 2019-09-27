@@ -23,7 +23,7 @@ export const contacts = [
     },
     {
         'id'             : '3',
-        'name'           : 'John',
+        'name'           : 'Jenefier',
         'unread'         : null,
         'lastMessageDate': '8 sep',
         'lastMessage':'I tried to call you yesterdayI tried to call you yesterdayI tried to call you yesterdayI tried to call you yesterdayI tried to call you yesterdayI tried to call you yesterday',

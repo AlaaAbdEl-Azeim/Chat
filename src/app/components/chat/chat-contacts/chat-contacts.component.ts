@@ -13,20 +13,29 @@ export class ChatContactsComponent implements OnInit {
   
   @Input() contactId;
   @Output()  selectContact = new EventEmitter<string>();
-  private number=3;
   ngOnInit() {
     //sort contacts by unreaded number of messages
     this.ContactsData.sort((firstObj, secondObj) =>  secondObj.unread - firstObj.unread);
-    this.chatService.increaseUnreadMsg(this.ContactsData);
-
-    
-    // this.ContactsData.subscribe(function (value) {
-    //   console.log('value:', value);
-    // });
+    this.simulateNotifications();
   }
 
+  simulateNotifications(){
+    //let contacts =this.ContactsData;
+    let chatComp=this;
+    if(chatComp.ContactsData){
+   // let contactId = this.contactId;
+    //  let chatService=this.chatService;
+      setInterval (function () {
+      //get random number between 0 and the length-1 of conacts 
+        let randomNumer=Math.floor(Math.random() * chatComp.ContactsData.length);
+        let selectedContact = chatComp.chatService.getContactById(chatComp.contactId);
+        if(selectedContact == chatComp.ContactsData[randomNumer]) return;
+        chatComp.chatService.increaseUnreadMsg(randomNumer);
+      }, 5000);
+    }
+  }
 
-  public searchContacts()
+  searchContacts()
     {
       //search in contacts by name or last message
         let searchText=this.searchText.trim().toLowerCase();
