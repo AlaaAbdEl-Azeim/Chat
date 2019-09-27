@@ -5,7 +5,7 @@
     [mode]="mobileQuery.matches ? 'over' : 'side'" 
     [ngClass]="mobileQuery.matches ? 'w-50' : 'w-25'"
     [fixedInViewport]="mobileQuery.matches"
-    class="shadow">
+    class="shadow bg-grey">
       <app-chat-contacts [contactId]="selectedContact.id" (selectContact)="openContactChat($event)">
       </app-chat-contacts>
     </mat-sidenav>
