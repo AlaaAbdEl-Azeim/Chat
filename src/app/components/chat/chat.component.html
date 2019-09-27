@@ -1,11 +1,21 @@
 <div class="chat-container">
-  <mat-sidenav-container fxFlex>
-    <mat-sidenav mode="side" opened fxFlex="33%" class="min-width-33 shadow">
+  <mat-sidenav-container  autosize fxFlex>
+    <mat-sidenav #drawer 
+    [opened]="!mobileQuery.matches"
+    [mode]="mobileQuery.matches ? 'over' : 'side'" 
+    [ngClass]="mobileQuery.matches ? 'w-50' : 'w-25'"
+    [fixedInViewport]="mobileQuery.matches">
       <app-chat-contacts [contactId]="selectedContact.id" (selectContact)="openContactChat($event)">
       </app-chat-contacts>
     </mat-sidenav>
+
     <mat-sidenav-content fxFlex>
+
+      <button  type="button" mat-button (click)="drawer.toggle()" *ngIf="mobileQuery.matches" class="position-absolute mat-icon-button">
+        <mat-icon class="text-primary">chat </mat-icon>
+      </button>
       <app-chat-messages *ngIf="selectedContact" [contact]="selectedContact" [history]="selectedHistory"></app-chat-messages>
     </mat-sidenav-content>
+
   </mat-sidenav-container>
 </div>

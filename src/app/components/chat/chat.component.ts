@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {MediaMatcher} from '@angular/cdk/layout';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {ChatService} from './chat.service';
 
 @Component({
@@ -10,10 +11,19 @@ export class ChatComponent implements OnInit {
  
   selectedContact;
   selectedHistory;
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
-  constructor(private chatService:ChatService) { 
-
+  constructor(private chatService:ChatService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) { 
+    this.mobileQuery = media.matchMedia('(max-width: 960px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
+  
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
 
   ngOnInit() {
     let firstContact=this.chatService.getContacts()[0];
