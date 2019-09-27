@@ -20,11 +20,8 @@ export class ChatContactsComponent implements OnInit {
   }
 
   simulateNotifications(){
-    //let contacts =this.ContactsData;
     let chatComp=this;
     if(chatComp.ContactsData){
-   // let contactId = this.contactId;
-    //  let chatService=this.chatService;
       setInterval (function () {
       //get random number between 0 and the length-1 of conacts 
         let randomNumer=Math.floor(Math.random() * chatComp.ContactsData.length);

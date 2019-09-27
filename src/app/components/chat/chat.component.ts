@@ -32,7 +32,6 @@ export class ChatComponent implements OnInit {
     firstContact? this.openContactChat(firstContact.id):"";
   }
   
-
   openContactChat(id){
     let history=this.chatService.getChatHistory(id);
     this.selectedContact = this.chatService.getContactById(id);

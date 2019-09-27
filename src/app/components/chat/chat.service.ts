@@ -8,12 +8,23 @@ import { Subject } from 'rxjs';
 })
 export class ChatService {
   contactsData= contacts;
-  history= chat_history;
+  history;
   scrollChatContent= new Subject();
 
 
-  constructor() { }
+  constructor() {
+    let saved=sessionStorage.getItem('chat-history');
+    if(!saved){
+      this.history= chat_history;
+      sessionStorage.setItem('chat-history',JSON.stringify(this.history));
+    }else{
+      this.history = JSON.parse(sessionStorage.getItem('chat-history'));
+    }
+  }
 
+  setHistorySession(){
+    sessionStorage.setItem('chat-history',JSON.stringify(this.history));
+  }
 
   getContacts(){
     return this.contactsData;
@@ -27,7 +38,7 @@ export class ChatService {
   }
 
   getChatHistory(contactId){
-    const chatContact = chat_history.find((contact) => {
+    const chatContact = this.history.find((contact) => {
       return contact.contactId === contactId;
     });
     this.scrollChatContent.next();
@@ -35,9 +46,13 @@ export class ChatService {
     if(chatContact) return chatContact.history;
   }
 
+  addSessionStorage(key,value){
+    sessionStorage.setItem(key,JSON.stringify(value));
+  }
+
   createNewChat(contactId){
     let history=[];
-    chat_history.push({"contactId":contactId,"history":history});
+    this.history.push({"contactId":contactId,"history":history});
     return  history;
   }
 

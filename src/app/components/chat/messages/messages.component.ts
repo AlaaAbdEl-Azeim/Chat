@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import {ChatService} from '../chat.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-chat-messages',
@@ -13,6 +13,8 @@ export class MessagesComponent implements OnInit {
   @Input() history;
   @Input() events: Observable<void>;
   @ViewChild('message_content',null) msgContent: ElementRef;
+  storeHistory: Subject<void> = new Subject<void>();
+
   private eventsSubscription: any
 
   user={
@@ -25,8 +27,12 @@ export class MessagesComponent implements OnInit {
 
   constructor(private chatService:ChatService) { }
   ngOnInit(){
+    this.openNewChat();
     this.eventsSubscription = this.events.subscribe(() => {
       this.openNewChat();
+    });
+    this.storeHistory.asObservable().subscribe(() => {
+      this.chatService.setHistorySession();
     });
   }
 
@@ -42,6 +48,7 @@ export class MessagesComponent implements OnInit {
                         "time":(new Date()).toString()});
                         this.newMessage="";
       this.openNewChat();
+      this.storeHistory.next();
     }
     return false;
   }
